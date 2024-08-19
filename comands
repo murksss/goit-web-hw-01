@@ -1,0 +1,25 @@
+add John 0132456789
+add Ann 0111222333
+add Ann 0444555666
+add Greg 0987654321
+add Victoria 0325487450
+add Alex 0999888777
+
+all
+
+add-birthday John 03.08.2000
+add-birthday Ann 01.08.1987
+add-birthday Greg 11.08.1999
+add-birthday Victoria 25.08.1983
+add-birthday Alex 30.07.1968
+
+exit
+
+change Ann 0444555666 0456456456
+
+contact Ann
+show-birthday Ann
+
+all
+
+birthdays
