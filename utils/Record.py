@@ -1,5 +1,6 @@
 from datetime import datetime
 import re
+from abc import ABC, abstractmethod
 
 
 def normalize_phone(phone_number: str) -> str:
@@ -20,17 +21,18 @@ def normalize_phone(phone_number: str) -> str:
         return normalized_number
 
 
-class Field:
+class Field(ABC):
+    @abstractmethod
+    def __str__(self):
+        pass
+
+
+class Name(Field):
     def __init__(self, value):
         self.value = value
 
     def __str__(self):
         return str(self.value)
-
-
-class Name(Field):
-    def __init__(self, value):
-        super().__init__(value)
 
 
 class Phone(Field):
@@ -39,16 +41,22 @@ class Phone(Field):
         if not normalize_value:
             raise ValueError(f"Invalid phone number: {value}")
         else:
-            super().__init__(normalize_value)
+            self.value = normalize_value
+
+    def __str__(self):
+        return str(self.value)
 
 
 class Birthday(Field):
     def __init__(self, value):
-        super().__init__(value)
+        self.value = value
         try:
-            self.birthday = datetime.strptime(value, "%d.%m.%Y").strftime("%d.%m.%Y")
+            self.value = datetime.strptime(value, "%d.%m.%Y").strftime("%d.%m.%Y")
         except ValueError:
             raise ValueError("Invalid date format. Use DD.MM.YYYY")
+
+    def __str__(self):
+        return str(self.value)
 
 
 class Record:
