@@ -12,11 +12,11 @@ def input_error(func):
         try:
             return func(*args, **kwargs)
         except IndexError:
-            return bot_answer('Enter the argument for the command.')
+            return 'Enter the argument for the command.'
         except KeyError:
-            return bot_answer('There are no contacts with that name.')
+            return 'There are no contacts with that name.'
         except ValueError:
-            return bot_answer('Enter correct arguments.')
+            return 'Enter correct arguments.'
 
     return inner
 
